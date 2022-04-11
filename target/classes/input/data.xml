@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selva>
+    <nombre>Werthers</nombre>
+    <tipo>Pantera</tipo>
+    <color>Negro</color>
+    <edad>12</edad>
+    <animal>
+        <nombre>%$name$%</nombre>
+        <tipo>%$tipo$%</tipo>
+        <color>%$color$%</color>
+        <edad>15</edad>
+    </animal>
+</selva>

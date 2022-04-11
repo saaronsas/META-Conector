@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition formPath="/monitor/tasks/sequentialTask.xhtml" name="%$task_name$%" resultAction="Rename" subType="task_item_type_generic" type="Generic">
+    <AssignedScope>
+        <Reference class="sailpoint.object.Scope" name="SGT"/>
+    </AssignedScope>
+    <Attributes>
+        <Map>
+            <entry key="TaskSchedule.host"/>
+            <entry key="exitOnError" value="false"/>
+            <entry key="taskCompletionEmailNotify" value="Disabled"/>
+            <entry key="taskCompletionEmailRecipients"/>
+            <entry key="taskCompletionEmailTemplate"/>
+            <entry key="taskList" value="%$task_list$%"/>
+            <entry key="trace" value="false"/>
+        </Map>
+    </Attributes>
+    <Description>Task that runs all the application's related tasks.</Description>
+    <Owner>
+        <Reference class="sailpoint.object.Identity" name="Admins"/>
+    </Owner>
+    <Parent>
+        <Reference class="sailpoint.object.TaskDefinition" name="Sequential Task Launcher"/>
+    </Parent>
+</TaskDefinition>
