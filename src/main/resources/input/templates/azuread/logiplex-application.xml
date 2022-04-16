@@ -183,7 +183,7 @@
         </Map>
     </Attributes>
     <CorrelationRule>
-        <Reference class="sailpoint.object.Rule" name="SGTO-Rule-Correlation-O365"/>
+        <Reference class="sailpoint.object.Rule"/>
     </CorrelationRule>
     <Owner>
         <Reference class="sailpoint.object.Identity" name="spadmin"/>

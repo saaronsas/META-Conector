@@ -1,49 +1,58 @@
 package application.logiplex.azuread;
 
-import org.apache.poi.ss.usermodel.*;
-
+import application.BaseApplication;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
+import static application.Config.*;
 import static application.logiplex.azuread.Config.*;
 
-public class AzureAD {
+public class AzureAD extends BaseApplication {
 
-    private static String taskPrefix[] = {"-TaskDefinition-AccountAggregation-", "-TaskDefinition-GroupAggregation-", "-TaskDefinition-FullAggregation-"};
-    private static ArrayList<String> taskLists = new ArrayList();
-
-    private static String type = "";
     private static String scope = "";
     private static String name = "";
     private static String applicationName = "";
 
-
+    private static String taskPrefix[] = {"-TaskDefinition-AccountAggregation-", "-TaskDefinition-GroupAggregation-", "-TaskDefinition-FullAggregation-"};
+    private static ArrayList<String> taskLists = new ArrayList();
     private static ArrayList<String>[] dataExcel = new ArrayList[]{new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>()};
-    private static int sheed;
 
+    /**
+     * Constructor for objects of class AzureAD
+     * @param sheed number of excel sheet
+     * @throws IOException
+     */
     public AzureAD(int sheed) throws IOException {
-        this.sheed = sheed;
+        super(sheed);
     }
 
+    /**
+     * Method to create application, tasks and other data
+     * @throws IOException
+     */
     public static void createAzureAD() throws IOException {
 
-        setVariablesFromXSLX(1);
-
-        saveFile(OUTPUT_XML_FILE_NAME + applicationName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_LOGILPEX_APPLICATION_TEMPLATE), ""));
-        createTasks(new String[]{INPUT_XML_ACCOUNT_AGGREGATION_TEMPLATE, INPUT_XML_GROUP_AGGREGATION_TEMPLATE, INPUT_XML_FULL_AGGREGATION_TEMPLATE});
-
+        System.out.println("---- CREATE AZURE AD APPS ----");
+        chargeDataExcel(dataExcel);
+        System.out.println(dataExcel[2].toString());
+        for (int i = 1; i < dataExcel[0].size(); i++) {
+            scope = dataExcel[1].get(i);
+            name = dataExcel[2].get(i);
+            applicationName = getApplicationName(name);
+            saveFile(createDirectory(OUTPUT_XML_FILE_NAME + applicationName) + applicationName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_LOGILPEX_APPLICATION_TEMPLATE), ""));
+            createTasks(new String[]{INPUT_XML_ACCOUNT_AGGREGATION_TEMPLATE, INPUT_XML_GROUP_AGGREGATION_TEMPLATE, INPUT_XML_FULL_AGGREGATION_TEMPLATE});
+        }
 
     }
 
-    private static Object chargeFile(String fileName) throws FileNotFoundException {
-        File file = new File(fileName);
-        Object obj = new Scanner(file);
-        System.out.println("---- FILE LOADED ----> " + fileName + " <----");
-        return obj;
-    }
-
+    /**
+     * Method to read and replace data from file
+     * @param obj file
+     * @param temporalName task name
+     * @return String of data
+     * @throws FileNotFoundException
+     */
     private static String readFile(Object obj, String temporalName) throws FileNotFoundException {
         String data = "";
         while (((Scanner) obj).hasNextLine()) {
@@ -59,52 +68,32 @@ public class AzureAD {
 
             data += line + "\n";
         }
-        System.out.println("---- DATA UPDATED ----");
+        //System.out.println("---- DATA UPDATED ----");
         return data;
     }
 
-    private static void saveFile(String fileName, String data) throws IOException {
-        File file = new File(fileName);
-        FileWriter fw = new FileWriter(file);
-        fw.write(data);
-        fw.close();
-        System.out.println("---- FILE SAVED ----> " + fileName + " <----");
-    }
-
+    /**
+     * Method to create tasks
+     * @param tasks tasks to create
+     * @throws IOException
+     */
     private static void createTasks(String[] tasks) throws IOException {
         for (int i = 0; i < tasks.length; i++) {
             String taskName = scope + taskPrefix[i] + name;
             taskLists.add(taskName);
-            saveFile(OUTPUT_XML_FILE_NAME + taskName + XML_EXTENSION, readFile(chargeFile(tasks[i]), taskName));
+            saveFile(createDirectory(OUTPUT_XML_FILE_NAME + applicationName) + taskName + XML_EXTENSION, readFile(chargeFile(tasks[i]), taskName));
         }
     }
 
-    private static void chargeDataExcel() throws IOException {
-        File file = new File(INPUT_XLSX_FILE_NAME);
-        InputStream inp = new FileInputStream(file);
-        Workbook wb = WorkbookFactory.create(inp);
-        Sheet sheet = wb.getSheetAt(sheed);
-        Iterator<Row> rowIt = sheet.rowIterator();
-        while (rowIt.hasNext()) {
-            int i = 0;
-            Row row = rowIt.next();
-            Iterator<Cell> cellIterator = row.cellIterator();
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                dataExcel[i].add(cell.getStringCellValue());
-                i++;
-            }
-        }
-    }
-
-    private static void setVariablesFromXSLX(int position) throws IOException {
-
-        chargeDataExcel();
-
-        type = dataExcel[0].get(position);
-        scope = dataExcel[1].get(position);
-        name = dataExcel[2].get(position);
-        applicationName = scope + "-Application-Logiplex-" + dataExcel[2].get(position);
+    /**
+     * Method to get custom ApplicationName
+     * SAILPOINT form = SCOPE + File TYPE + NAME
+     * @param name name of application
+     * @return custom application name
+     * @throws IOException
+     */
+    private static String getApplicationName(String name) throws IOException {
+         return scope + "-Application-Logiplex-" + name;
     }
 
 }
