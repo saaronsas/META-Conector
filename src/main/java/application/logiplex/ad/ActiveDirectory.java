@@ -106,9 +106,9 @@ public class ActiveDirectory extends BaseApplication {
      * @throws IOException
      */
     private static void createCertifications() throws IOException {
-        certDefName = "%s-CertificationDefinition-CISO %s".formatted(scope, name);
-        workgroupName = "%s-Workgroup-%s_ITOWNER".formatted(scope, name);
-        certGroupName = "%s-CertificationGroup-CISO %s".formatted(scope, name);
+        certDefName = scope + "-CertificationDefinition-CISO " + name;
+        workgroupName = scope + "-Workgroup-" + name + "_ITOWNER";
+        certGroupName = scope + "-CertificationGroup-CISO " + name;
         saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "certifications") + certDefName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_CERTIFICATION_DEFINITION_TEMPLATE), certDefName));
         saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "certifications") + certGroupName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_CERTIFICATION_GROUP_TEMPLATE), certGroupName));
         saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "certifications") + workgroupName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_WORKGROUP_TEMPLATE), workgroupName));

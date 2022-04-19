@@ -21,8 +21,13 @@ public class Config {
      * Template for Active Directory
      */
     public static final String INPUT_XML_LOGILPEX_APPLICATION_TEMPLATE = "src/main/resources/input/templates/azuread/logiplex-application.xml";
-    public static final String INPUT_XML_CERTIFICATION_DEFINITION_TEMPLATE = "src/main/resources/input/templates/ad/certificationDefinition-CISO.xml";
-    public static final String INPUT_XML_CERTIFICATION_GROUP_TEMPLATE = "src/main/resources/input/templates/ad/certificationGroup-CISO.xml";
-    public static final String INPUT_XML_WORKGROUP_TEMPLATE = "src/main/resources/input/templates/ad/workgroup-CISO.xml";
+    public static final String INPUT_XML_CERTIFICATION_DEFINITION_TEMPLATE = "src/main/resources/input/templates/azuread/certificationDefinition-CISO.xml";
+    public static final String INPUT_XML_CERTIFICATION_GROUP_TEMPLATE = "src/main/resources/input/templates/azuread/certificationGroup-CISO.xml";
+    public static final String INPUT_XML_WORKGROUP_TEMPLATE = "src/main/resources/input/templates/azuread/workgroup-CISO.xml";
+    public static final String INPUT_XML_MASTER_APPLICATION_TEMPLATE = "src/main/resources/input/templates/azuread/PROTECT-Application-AzureAD.xml";
 
+    /**
+     * File names
+     */
+    public static final String MASTER_APPLICATION_NAME = "PROTECT-Application-AzureAD";
 }

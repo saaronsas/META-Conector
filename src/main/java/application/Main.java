@@ -73,19 +73,25 @@ public class Main {
         if (directory.exists()) {
             for (File file : directory.listFiles()) {
                 for (File file1 : file.listFiles()) {
-                    for (File file2 : file1.listFiles()) {
-                        if (file2.delete()) {
-                            System.out.println("File deleted: " + file2.getName());
+                    if (file1.listFiles() != null) {
+                        for (File file2 : file1.listFiles()) {
+                            if (file2.delete()) {
+                                System.out.println("File deleted: " + file2.getName());
+                            }
                         }
                     }
                     if (file1.delete()) {
                         System.out.println("File deleted: " + file1.getName());
                     }
+
                 }
                 if (file.delete()) {
                     System.out.println("File deleted: " + file.getName());
                 }
             }
+        }
+        else {
+            directory.mkdir();
         }
     }
 

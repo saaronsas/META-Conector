@@ -6,19 +6,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static application.Config.*;
-import static application.logiplex.ad.Config.VARIABLE_APP_NAME;
-import static application.logiplex.ad.Config.VARIABLE_CERTIFICATION_GROUP_NAME;
-import static application.logiplex.ad.Config.VARIABLE_CERTIFICATION_NAME;
-import static application.logiplex.ad.Config.VARIABLE_SCOPE_NAME;
-import static application.logiplex.ad.Config.VARIABLE_TASK_LIST;
-import static application.logiplex.ad.Config.VARIABLE_TASK_NAME;
-import static application.logiplex.ad.Config.VARIABLE_WORKGROUP_NAME;
 import static application.logiplex.azuread.Config.*;
 
 public class AzureAD extends BaseApplication {
 
     private static String scope = "";
     private static String name = "";
+    private static String url = "";
+    private static String clientId = "";
+    private static String clientSecret = "";
     private static String applicationName = "";
     private static String certDefName = "";
     private static String workgroupName = "";
@@ -26,7 +22,8 @@ public class AzureAD extends BaseApplication {
 
     private static String taskPrefix[] = {"-TaskDefinition-AccountAggregation-", "-TaskDefinition-GroupAggregation-", "-TaskDefinition-FullAggregation-"};
     private static ArrayList<String> taskLists = new ArrayList();
-    private static ArrayList<String>[] dataExcel = new ArrayList[]{new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>()};
+    private static ArrayList<String>[] dataExcel = new ArrayList[]{new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(),
+                                                                    new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>()};
 
     /**
      * Constructor for objects of class AzureAD
@@ -47,14 +44,28 @@ public class AzureAD extends BaseApplication {
         chargeDataExcel(dataExcel);
         System.out.println(dataExcel[2].toString());
         for (int i = 1; i < dataExcel[0].size(); i++) {
-            scope = dataExcel[1].get(i);
-            name = dataExcel[2].get(i);
-            applicationName = getApplicationName(name);
+            setDataFromExcel(i);
             saveFile(createDirectory(OUTPUT_XML_FILE_NAME + applicationName) + applicationName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_LOGILPEX_APPLICATION_TEMPLATE), ""));
             createTasks(new String[]{INPUT_XML_ACCOUNT_AGGREGATION_TEMPLATE, INPUT_XML_GROUP_AGGREGATION_TEMPLATE, INPUT_XML_FULL_AGGREGATION_TEMPLATE});
             createCertifications();
+            createMasterApplication();
         }
 
+    }
+
+    /**
+     * Method to set data from dataExcel{ ...arrayList }
+     * @param i
+     * @throws IOException
+     */
+    private static void setDataFromExcel(int i) throws IOException {
+        scope = dataExcel[1].get(i);
+        name = dataExcel[2].get(i);
+        url = (dataExcel[3].get(i).equals("-")) ? "" : dataExcel[3].get(i);
+        clientId = (dataExcel[4].get(i).equals("-")) ? "" : dataExcel[4].get(i);
+        clientSecret = (dataExcel[5].get(i).equals("-")) ? "" : dataExcel[5].get(i);
+
+        applicationName = getApplicationName(name);
     }
 
     /**
@@ -116,6 +127,12 @@ public class AzureAD extends BaseApplication {
         saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "certifications") + certDefName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_CERTIFICATION_DEFINITION_TEMPLATE), certDefName));
         saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "certifications") + certGroupName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_CERTIFICATION_GROUP_TEMPLATE), certGroupName));
         saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "certifications") + workgroupName + XML_EXTENSION, readFile(chargeFile(INPUT_XML_WORKGROUP_TEMPLATE), workgroupName));
+    }
+
+    private static void createMasterApplication() throws IOException {
+        if (!url.equals("") && !clientId.equals("") && !clientSecret.equals("")) {
+            saveFile(createSubDirectory(OUTPUT_XML_FILE_NAME + applicationName, "master-application") + MASTER_APPLICATION_NAME + XML_EXTENSION, readFile(chargeFile(INPUT_XML_MASTER_APPLICATION_TEMPLATE), MASTER_APPLICATION_NAME));
+        }
     }
 
     /**
