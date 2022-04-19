@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CertificationDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<CertificationDefinition name="%$certDef_name$%">
+    <AssignedScope>
+        <Reference class="sailpoint.object.Scope" name="%$scope$%"/>
+    </AssignedScope>
+    <Attributes>
+        <Map>
+            <entry key="activePeriodDurationAmount" value="2"/>
+            <entry key="activePeriodDurationScale" value="Week"/>
+            <entry key="allowCertificationEntityBulkAccountRevocation" value="true"/>
+            <entry key="allowCertificationEntityBulkApprove" value="true"/>
+            <entry key="allowCertificationEntityBulkClearDecisions" value="true"/>
+            <entry key="allowCertificationEntityBulkRevocation" value="true"/>
+            <entry key="allowEntityBulkApprove" value="true"/>
+            <entry key="allowListViewBulkAccountRevoke" value="true"/>
+            <entry key="allowListViewBulkApprove" value="true"/>
+            <entry key="allowListViewBulkClearDecisions" value="true"/>
+            <entry key="allowListViewBulkMitigate" value="false"/>
+            <entry key="allowListViewBulkReassign" value="true"/>
+            <entry key="allowListViewBulkRevoke" value="false"/>
+            <entry key="allowProvisioningMissingRequirements" value="false"/>
+            <entry key="allowSelfCertification" value="SystemAdministrator"/>
+            <entry key="assimilateBulkReassignments" value="true"/>
+            <entry key="autoSignOffWhenNothingToCertify" value="true"/>
+            <entry key="automateSignOffOnReassignment" value="false"/>
+            <entry key="automateSignoffPopup" value="true"/>
+            <entry key="automaticClosingAction">
+                <value>
+                    <CertificationStatus>Remediated</CertificationStatus>
+                </value>
+            </entry>
+            <entry key="automaticClosingComments" value="Automatic revoke by Sailpoint"/>
+            <entry key="automaticClosingDurationAmount" value="1"/>
+            <entry key="automaticClosingDurationScale" value="Day"/>
+            <entry key="automaticClosingEnabled" value="true"/>
+            <entry key="automaticClosingRuleName"/>
+            <entry key="automaticClosingSigner" value="spadmin"/>
+            <entry key="bulkReassignmentEmailTemplate" value="SGTO-EmailTemplate-FrameworkAccessBulkReAssignment"/>
+            <entry key="backupCertifier" value="%$workgroup_name$%"/>
+            <entry key="certOwner" value="%$workgroup_name$%"/>
+            <entry key="certification.remindersAndEscalations">
+                <value>
+                    <NotificationConfig enabled="true" reminderFrequency="86400000" remindersEnabled="true">
+                        <Configs>
+                            <ReminderConfig emailTemplateName="SGTO-EmailTemplate-FrameworkAccessReviewReminder" enabled="true" frequency="86400000" millis="86400000"/>
+                            <ReminderConfig additionalRecipientsPresent="true" additionalRecipientsRuleName="SGTO-Rule-EmailToCertifiedIdentities" before="true" emailTemplateName="SGTO-EmailTemplate-FrameworkAccessReviewReminderLastWeek" enabled="true" frequency="86400000" millis="604800000"/>
+                        </Configs>
+                    </NotificationConfig>
+                </value>
+            </entry>
+            <entry key="certificationActivePhaseEnterRule"/>
+            <entry key="certificationAutoApprove" value="false"/>
+            <entry key="certificationChallengePhaseEnterRule"/>
+            <entry key="certificationDecisionChallengedEmailTemplate"/>
+            <entry key="certificationDelegationReview" value="false"/>
+            <entry key="certificationDisableDelegationForwarding" value="true"/>
+            <entry key="certificationEmailTemplate" value="SGTO-EmailTemplate-FrameworkAccessReviewStart"/>
+            <entry key="certificationEntityDelegationEnabled" value="true"/>
+            <entry key="certificationFinishPhaseEnterRule"/>
+            <entry key="certificationGlobal" value="false"/>
+            <entry key="certificationIncludeClassifications" value="false"/>
+            <entry key="certificationItemDelegationEnabled" value="true"/>
+            <entry key="certificationLimitReassignments" value="false"/>
+            <entry key="certificationMitigationDeprovisionEnabled" value="false"/>
+            <entry key="certificationMitigationEnabled" value="false"/>
+            <entry key="certificationMitigationPopupEnabled" value="false"/>
+            <entry key="certificationNameTemplate" value="%$certDef_name$%"/>
+            <entry key="certificationReassignmentLimit" value="4"/>
+            <entry key="certificationRemediationPhaseEnterRule"/>
+            <entry key="certificationRequired.remindersAndEscalations"/>
+            <entry key="certificationRequiredDurationScale" value="Month"/>
+            <entry key="certificationShowRecommendations" value="false"/>
+            <entry key="certificationSignOffApprovalEmailTemplate"/>
+            <entry key="certificationSignatureType"/>
+            <entry key="certificationType" value="ApplicationOwner"/>
+            <entry key="certifiedApplicationIds" value="%$application_name$%"/>
+            <entry key="certifiedDurationScale" value="Month"/>
+            <entry key="certifierOwnerAccount" value="ApplicationOwner"/>
+            <entry key="certifierOwnerEntitlement" value="ApplicationOwner"/>
+            <entry key="certifierOwnerRole" value="RoleOwner"/>
+            <entry key="certifierType" value="Manual"/>
+            <entry key="certifyAccounts" value="false"/>
+            <entry key="certifyEmptyAccounts" value="false"/>
+            <entry key="challengeAcceptedEmailTemplate"/>
+            <entry key="challengeDecisionExpirationEmailTemplate"/>
+            <entry key="challengeExpirationEmailTemplate"/>
+            <entry key="challengeGenerationEmailTemplate"/>
+            <entry key="challengePeriodDurationAmount" value="1"/>
+            <entry key="challengePeriodDurationScale" value="Week"/>
+            <entry key="challengePeriodEnabled" value="false"/>
+            <entry key="challengePeriodEndEmailTemplate"/>
+            <entry key="challengePeriodStartEmailTemplate"/>
+            <entry key="challengeRejectedEmailTemplate"/>
+            <entry key="completeCertificationHierarchyEnabled" value="false"/>
+            <entry key="continuous" value="false"/>
+            <entry key="electronicSignatureRequired" value="false"/>
+            <entry key="enableAccountRevokeAction" value="false"/>
+            <entry key="enableApproveAccountAction"/>
+            <entry key="enableEntitlementAssignments" value="false"/>
+            <entry key="entitlementGranularity" value="Value"/>
+            <entry key="excludeBaseAppAccounts"/>
+            <entry key="excludeInactive" value="true"/>
+            <entry key="exclusionRuleName" value="SGTO-Rule-ExclusionRule-Certification"/>
+            <entry key="filterLogicalEntitlements" value="false"/>
+            <entry key="flattenManagerCertificationHierarchy" value="false"/>
+            <entry key="includeAdditionalEntitlements" value="true"/>
+            <entry key="includeCapabilities" value="false"/>
+            <entry key="includePolicyViolations" value="true"/>
+            <entry key="includeRoleHierarchy" value="false"/>
+            <entry key="includeRoles" value="false"/>
+            <entry key="includeScopes" value="false"/>
+            <entry key="includeTargetPermissions" value="false"/>
+            <entry key="mitigationDurationAmount" value="1"/>
+            <entry key="mitigationDurationScale" value="Month"/>
+            <entry key="mitigationExpirationEmailTemplate"/>
+            <entry key="nameTemplate" value="%$certDef_name$%"/>
+            <entry key="notifyRemediation"/>
+            <entry key="overdue.remindersAndEscalations"/>
+            <entry key="owners" value="SGTO-Workgroup-CISO, %$workgroup_name$%"/>
+            <entry key="preDelegationRuleName" value="SGTO-Rule-Reassignment-UserManager"/>
+            <entry key="processRevokesImmediately" value="false"/>
+            <entry key="recommendationsGenerated" value="false"/>
+            <entry key="remediation.remindersAndEscalations"/>
+            <entry key="remediationPeriodDurationAmount" value="1"/>
+            <entry key="remediationPeriodDurationScale" value="Month"/>
+            <entry key="remediationPeriodEnabled" value="false"/>
+            <entry key="requireApprovalComments" value="false"/>
+            <entry key="requireBulkCertifyConfirmation" value="true"/>
+            <entry key="requireMitigationComments" value="false"/>
+            <entry key="requireReassignmentCompletion" value="true"/>
+            <entry key="requireRemediationComments" value="false"/>
+            <entry key="saveExclusions" value="true"/>
+            <entry key="sendPreDelegationCompleteEmails" value="false"/>
+            <entry key="shortNameTemplate" value="%$certDef_name$%"/>
+            <entry key="stagingEnabled" value="true"/>
+            <entry key="subordinateCertificationEnabled" value="true"/>
+            <entry key="suppressEmailWhenNothingToCertify" value="false"/>
+            <entry key="suppressInitialNotification" value="false"/>
+        </Map>
+    </Attributes>
+    <Description>Application Owner Certification for [%$application_name$%]</Description>
+    <Owner>
+        <Reference class="sailpoint.object.Identity" name="%$workgroup_name$%"/>
+    </Owner>
+</CertificationDefinition>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE CertificationGroup PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<CertificationGroup name="%$cerfGroup_name$%" percentComplete="100" status="Complete" type="Certification">
+    <AssignedScope>
+        <Reference class="sailpoint.object.Scope" name="%$scope$%"/>
+    </AssignedScope>
+    <Definition>
+        <Reference class="sailpoint.object.CertificationDefinition" name="%$certDef_name$%"/>
+    </Definition>
+    <Owner>
+        <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+</CertificationGroup>
