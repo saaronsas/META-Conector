@@ -2,7 +2,7 @@
 <!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
 <TaskDefinition formPath="/monitor/tasks/accountAggregationTask.xhtml" name="%$task_name$%" resultAction="Rename" subType="task_item_type_acct_aggregation" type="AccountAggregation">
     <AssignedScope>
-        <Reference class="sailpoint.object.Scope" name="SGT"/>
+        <Reference class="sailpoint.object.Scope" name="%$scope$%"/>
     </AssignedScope>
     <Attributes>
         <Map>
