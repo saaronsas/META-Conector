@@ -94,6 +94,12 @@ public class AzureAD extends BaseApplication {
                 line = line.substring(0, line.indexOf(VARIABLE_START)) + workgroupName + line.substring(line.indexOf(VARIABLE_END) + 2);
             } else if (line.contains(VARIABLE_CERTIFICATION_GROUP_NAME)) {
                 line = line.substring(0, line.indexOf(VARIABLE_START)) + certGroupName + line.substring(line.indexOf(VARIABLE_END) + 2);
+            } else if (line.contains(VARIABLE_URL_MATER_APP)) {
+                line = line.substring(0, line.indexOf(VARIABLE_START)) + url + line.substring(line.indexOf(VARIABLE_END) + 2);
+            } else if (line.contains(VARIABLE_CLIENT_ID_MATER_APP)) {
+                line = line.substring(0, line.indexOf(VARIABLE_START)) + clientId + line.substring(line.indexOf(VARIABLE_END) + 2);
+            } else if (line.contains(VARIABLE_CLIENT_SECRET_MATER_APP)) {
+                line = line.substring(0, line.indexOf(VARIABLE_START)) + clientSecret + line.substring(line.indexOf(VARIABLE_END) + 2);
             }
 
             data += line + "\n";

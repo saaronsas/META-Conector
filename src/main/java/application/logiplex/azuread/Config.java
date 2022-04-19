@@ -16,6 +16,9 @@ public class Config {
     public static final String VARIABLE_CERTIFICATION_NAME = "%$certDef_name$%";
     public static final String VARIABLE_WORKGROUP_NAME = "%$workgroup_name$%";
     public static final String VARIABLE_CERTIFICATION_GROUP_NAME = "%$certGroup_name$%";
+    public static final String VARIABLE_URL_MATER_APP = "%$url$%";
+    public static final String VARIABLE_CLIENT_ID_MATER_APP = "%$clientId$%";
+    public static final String VARIABLE_CLIENT_SECRET_MATER_APP = "%$clientSecret$%";
 
     /**
      * Template for Active Directory
